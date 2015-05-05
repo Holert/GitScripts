@@ -2,4 +2,12 @@
 
 # usage: 
 
- 
+
+
+# sort files after protein ident
+
+# compare e-values in column 3
+
+# delete line with higher e-value
+
+# write out filtered file
