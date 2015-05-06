@@ -38,3 +38,9 @@ for key, value in read_dictionary.items():
 
 fileout.close()
 filein.close()
+
+""" 
+to do: 
+add coverage of HMM hits
+change to python 2.7 (iteritems)
+“““
