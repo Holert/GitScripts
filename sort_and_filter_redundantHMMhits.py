@@ -1,4 +1,4 @@
-# Script for finding redundant HMM hits (proteins with more than one hit from the same HMM) in metagenomic datasets in filtered results datasets from HMM_search_and_parse_and_extract.py (Erick)
+# Script for finding redundant HMM hits (proteins with more than one hit from the same HMM) in metagenomic datasets in filtered results from HMM_search_and_parse_and_extract.py (Erick)
 
 
 # usage: python sort_and_filter_redundantHMMhits.py <hmms.filtered.txt>
@@ -19,21 +19,22 @@ read_dictionary = {}
 
 for line in filein:
     line1 = line.split('\t')
+    #print (line1)
     query = line1[0] # protein ID
     subject = line1[1] # HMM
-    evalue = line1[2] # e-value
-    current_result = read_dictionary.get(query, [ 'none', 10])	# get e-value for protein ID
-    if evalue < current_result[1]: # compare e-values
-      	new_result =[subject, evalue]         
-        read_dictionary[query] = new_result		# update entry in dictionary
+    evalue = float(line1[2]) # e-value
+    current_result = read_dictionary.get(query, ['none', 10])	# get e-value for protein ID
+    if evalue < float(current_result[1]): # compare e-values
+    	new_result = [subject, evalue]
+    	read_dictionary[query] = new_result # update entry in dictionary
     else:
-        continue
+    	continue
         
         
-#write dictionary
+# write dictionary
 
-for key, value in read_dictionary.iteritems():
-   fileout.write("%s\t%s\t%s\n" %(key, value[0], value[1]))
+for key, value in read_dictionary.items():
+	fileout.write("%s\t%s\t%s\n" %(key, value[0], value[1]))
 
 fileout.close()
 filein.close()
