@@ -33,7 +33,7 @@ for line in filein:
         
 # write dictionary
 
-for key, value in read_dictionary.items():
+for key, value in read_dictionary.iteritems():
 	fileout.write("%s\t%s\t%s\n" %(key, value[0], value[1]))
 
 fileout.close()
@@ -42,5 +42,4 @@ filein.close()
 """ 
 to do: 
 add coverage of HMM hits
-change to python 2.7 (iteritems)
-“““
+"""
