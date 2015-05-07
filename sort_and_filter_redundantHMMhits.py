@@ -23,9 +23,10 @@ for line in filein:
     query = line1[0] # protein ID
     subject = line1[1] # HMM
     evalue = float(line1[2]) # e-value
-    current_result = read_dictionary.get(query, ['none', 10])	# get e-value for protein ID
+    coverage = float(line1[7]) # coverage
+    current_result = read_dictionary.get(query, ['none', 10, 'none'])	# get e-value for protein ID
     if evalue < float(current_result[1]): # compare e-values
-    	new_result = [subject, evalue]
+    	new_result = [subject, evalue, coverage]
     	read_dictionary[query] = new_result # update entry in dictionary
     else:
     	continue
@@ -34,12 +35,11 @@ for line in filein:
 # write dictionary
 
 for key, value in read_dictionary.iteritems():
-	fileout.write("%s\t%s\t%s\n" %(key, value[0], value[1]))
+	fileout.write("%s\t%s\t%s\t%s\n" %(key, value[0], value[1], value[2]))
 
 fileout.close()
 filein.close()
 
 """ 
 to do: 
-add coverage of HMM hits
 """
