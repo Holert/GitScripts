@@ -1,5 +1,8 @@
 # Script for finding redundant HMM hits (proteins with more than one hit from the same HMM) in metagenomic datasets in filtered results from HMM_search_and_parse_and_extract.py (Erick)
 
+# File created on 07 Mar 2015.
+
+# author__ = "Johannes Holert"
 
 # usage: python sort_and_filter_redundantHMMhits.py <hmms.filtered.txt>
 # 				0									1
