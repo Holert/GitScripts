@@ -8,6 +8,11 @@
 # 				0										1							2
 
 import sys
+filein = open(sys.argv[1], 'r')
+filecoverage = open(sys.argv[2], 'r')
+outy = sys.argv[1]
+output = outy + '.abundancy.txt' """ substitute part of name !!! """
+fileout = open(output, 'w')
 
 # create empty dictionaries
 
@@ -18,11 +23,23 @@ coverage_dict = {}
 
 for line in filein:
     line1 = line.split('\t')
-    #print (line1)
-    query = line1[0] # protein ID
-    subject = line1[1] # HMM
+    query = line1[1] # HMM
+    subject = line1[0] # protein ID
     evalue = float(line1[2]) # e-value
-    coverage = float(line1[7]) # coverage
+    HMMcoverage = float(line1[3]) # coverage of HMMhit
+    newdict = [subject, evalue, HMMcoverage]
+    read_dict[query] = newdict # create dictionary key = HMM
+    
+    # print read_dict --> works so far, potential errors due to tab/space misplacement
+
+for line in filecoverage:
+	line2 = line.split('\t')
+    contig_ID = line2[0] # contigID
+    contig_coverage = line2[1] # coverage
+    coverage_dict[contig_ID] = contig_coverage # create dictionary key = contig_ID
+    
+    # print coverage_dict --> works so far, potential errors due to tab/space misplacement
+    
     current_result = read_dictionary.get(query, ['none', 10, 'none'])	# set e-value
     if evalue < float(current_result[1]): # compare e-values
     	new_result = [subject, evalue, coverage]
