@@ -27,7 +27,7 @@ for line in filein:
     subject = line1[1] # HMM
     evalue = float(line1[2]) # e-value
     coverage = float(line1[7]) # coverage
-    current_result = read_dictionary.get(query, ['none', 10, 'none'])	# get e-value for protein ID
+    current_result = read_dictionary.get(query, ['none', 10, 'none'])	# set e-value
     if evalue < float(current_result[1]): # compare e-values
     	new_result = [subject, evalue, coverage]
     	read_dictionary[query] = new_result # update entry in dictionary
