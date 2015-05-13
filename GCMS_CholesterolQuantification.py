@@ -28,9 +28,9 @@ for row in reader:
             ret_time = float(row[2])
             area = float(area)
             if (ret_time < 17) and (ret_time > 16):
-                fileout.write ("%s\t%s\tStandard\n" %(ret_time, area))
+                fileout.write ("%s,%s,Standard\n" %(ret_time, area))
             elif (ret_time < 19.7) and (ret_time > 19.0):
-                fileout.write ("%s\t%s\tCholesterol\n" %(ret_time, area))
+                fileout.write ("%s,%s,Cholesterol\n" %(ret_time, area))
             else:
                continue
 
