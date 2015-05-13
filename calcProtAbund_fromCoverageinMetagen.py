@@ -30,7 +30,9 @@ for line in filein:
     newdict = [subject, evalue, HMMcoverage]
     read_dict[query] = newdict # create dictionary key = HMM
     
-    # print read_dict --> works so far, potential errors due to tab/space misplacement
+    # split coming from one side and slipt only once
+    
+    # print read_dict --> works, potential errors due to tab/space misplacement
 
 for line in filecoverage:
 	line2 = line.split('\t')
@@ -38,8 +40,15 @@ for line in filecoverage:
     contig_coverage = line2[1] # coverage
     coverage_dict[contig_ID] = contig_coverage # create dictionary key = contig_ID
     
-    # print coverage_dict --> works so far, potential errors due to tab/space misplacement
+    # print coverage_dict --> works, potential errors due to tab/space misplacement
+
+
+# retrieve contig coverage value from coverage_dict
+
+# coverage = coverage_dictionary.get(seq_name,0)
     
+for query in read_dict:
+	
     current_result = read_dictionary.get(query, ['none', 10, 'none'])	# set e-value
     if evalue < float(current_result[1]): # compare e-values
     	new_result = [subject, evalue, coverage]
