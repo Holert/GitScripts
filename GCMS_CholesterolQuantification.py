@@ -14,23 +14,21 @@ outy = sys.argv[1]
 output = outy + 'quantitation.csv' # substitute parts of input name
 fileout = open(output, 'w')
 
-# read lines in input file, split lines by Tab, extract protein ID, HMM and e-value
-
-reader = csv.reader(filein)
+reader = csv.reader(filein) # read lines in input file
 for row in reader:
-    if len(row) < 3:
-        continue
+    if len(row) < 3: 
+        continue # identify header rows by length and skip these rows
     else:
-        area = row[8]
-        if area == "Area":
+        area = row[8] # read out peak areas
+        if area == "Area": # skip string Area
             continue
         else:
-            ret_time = float(row[2])
-            area = float(area)
-            if (ret_time < 17) and (ret_time > 16):
-                fileout.write ("%s,%s,Standard\n" %(ret_time, area))
-            elif (ret_time < 19.7) and (ret_time > 19.0):
-                fileout.write ("%s,%s,Cholesterol\n" %(ret_time, area))
+            ret_time = float(row[2]) # read out retention times and convert into flowting numbers
+            area = float(area) # convert areas into flowting numbers
+            if (ret_time < 17) and (ret_time > 16): # set time frame for detection of 5alpha-cholestane standard peak
+                fileout.write ("%s,%s,Standard\n" %(ret_time, area)) # write retention time and peak area for internal standard
+            elif (ret_time < 19.7) and (ret_time > 19.0): # set time frame for detection of cholesterol peak
+                fileout.write ("%s,%s,Cholesterol\n" %(ret_time, area)) # write retention time and peak area for cholesterol
             else:
                continue
 
