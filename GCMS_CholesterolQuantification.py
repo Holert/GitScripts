@@ -35,4 +35,11 @@ for row in reader:
 filein.close()
 fileout.close()
     
+ """ To Do:
+ 
+ - check and correct time frames
+ - add comments
+ - rewrite for cholestenone
+  """
+   
     
