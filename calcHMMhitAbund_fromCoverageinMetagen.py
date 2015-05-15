@@ -1,4 +1,4 @@
-""" Calculates HMM hit abundances in metagenomic datasets by reading sequence coverage from original sequence files """
+""" Calculates HMM hit abundances in metagenomic datasets by reading sequence coverage from contig files """
 
 # File created on 07 Mar 2015.
 
@@ -11,7 +11,7 @@ import sys
 filein = open(sys.argv[1], 'r')
 filecoverage = open(sys.argv[2], 'r')
 outy = sys.argv[1]
-output = outy + '.abundancy.txt' """ substitute part of name !!! """
+output = outy + '.abundancy.txt'
 fileout = open(output, 'w')
 
 # create empty dictionaries
@@ -38,28 +38,18 @@ for line in filein:
     subject = line1[0] # protein ID
     protein = subject.rsplit('_', 1) # split protein ID by underscore delimiter, results in list
     contig = protein[0] # get first entry in list = contig ID
-    coverage = coverage_dict.get(contig)
-    current_result = result_dict.get(query, 0)
-    update_result = current_result + coverage
-    result_dict[query] = update_result
-    
+    coverage = coverage_dict.get(contig) # look up contig in coverage dict and get value
+    current_result = result_dict.get(query, 0) # set initial coverage value in dict for HMM to 0
+    update_result = current_result + coverage # add coverage values to each other
+    result_dict[query] = update_result # write new coverage value to dict with HMMs as key
+
 print result_dict
 
-    # get HMM set coverage to 0
-    # print current_coverage
-    
+for key, value in result_dict.iteritems():
+	fileout.write("%s\t%f\t\output\n" %(key, value[0]))
 
-# from erick:
-
-
-
-"""for seq_record in SeqIO.parse(list_of_files[0], format = "fasta"):
-      seq_name = seq_record.id
-      coverage = coverage_dictionary.get(seq_name,0)
-      description = "coverage=" + coverage
-      fileout.write('>%s %s\n%s\n' %(seq_record.id, description, seq_record.seq))
-   fileout.close()
-"""
+fileout.close()
+filein.close()
 
 
 """ pseudocode
