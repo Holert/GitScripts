@@ -26,7 +26,7 @@ for row in reader:
             ret_time = float(row[2]) # read out retention times and convert into flowting numbers
             area = float(area) # convert areas into flowting numbers
             if (ret_time < 16.7) and (ret_time > 16.4): # set time frame for detection of 5alpha-cholestane standard peak
-                fileout.write ("%s,%s,Standard\n" %(ret_time, area)) # write retention time and peak area for internal standard
+                fileout.write ("%s,%s,Standard,%s\n" %(ret_time, area, output)) # write retention time and peak area for internal standard
             elif (ret_time < 21) and (ret_time > 19.3): # set time frame for detection of cholestenone peak
                 fileout.write ("%s,%s,Cholestenone\n" %(ret_time, area)) # write retention time and peak area for cholestenone
             else:
