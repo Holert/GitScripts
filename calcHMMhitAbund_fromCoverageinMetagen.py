@@ -46,7 +46,7 @@ for line in filein:
 print result_dict
 
 for key, value in result_dict.iteritems():
-	fileout.write("%s\t%f\t\output\n" %(key, value[0]))
+	fileout.write("%s\t%f\t%s\n" %(key, value, output))
 
 fileout.close()
 filein.close()
