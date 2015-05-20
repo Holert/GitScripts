@@ -46,7 +46,6 @@ for line in filein:
     update_result = current_result + coverage # add coverage values to each other
     result_dict[query] = update_result # write new coverage value to dict with HMMs as key
 
-print result_dict
 
 for key, value in result_dict.iteritems():
 	fileout.write("%s\t%f\t%s\n" %(key, value, output))
