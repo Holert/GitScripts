@@ -8,11 +8,13 @@
 # 				0									1
 
 import sys
+import re
 
 filein = open(sys.argv[1], 'r')
-outy = sys.argv[1]
-output = outy + '.clean.txt'
+shortname = re.sub('.txt$','', sys.argv[1], re.I)
+output = shortname + ".clean.txt"
 fileout = open(output, 'w')
+
 
 # create empty dictionary
 
