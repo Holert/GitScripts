@@ -8,10 +8,13 @@
 # 				0										1							2
 
 import sys
+import re
+
+
 filein = open(sys.argv[1], 'r')
 filecoverage = open(sys.argv[2], 'r')
-outy = sys.argv[1]
-output = outy + '.abundancy.txt'
+shortname = re.sub('.txt$','', sys.argv[1], re.I)
+output = shortname + ".coverage.txt"
 fileout = open(output, 'w')
 
 # create empty dictionaries
