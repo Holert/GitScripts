@@ -9,9 +9,12 @@
 
 import sys
 import csv
+import re
+
 filein = open(sys.argv[1], 'r')
-outy = sys.argv[1]
-output = outy + 'quantitation.csv' # substitute parts of input name
+shortname = re.sub('.csv$','', sys.argv[1], re.I)
+# finds file format removes extension, case insensitive search
+output = shortname + ".quant.csv"outy = sys.argv[1]
 fileout = open(output, 'w')
 
 reader = csv.reader(filein) # read lines in input file
