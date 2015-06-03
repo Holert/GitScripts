@@ -1,5 +1,6 @@
 
 import sys
+import re
 from Bio import SeqIO
 from Bio import Entrez
 Entrez.email = "holert@mail.ubc.ca"
@@ -11,6 +12,8 @@ filelist = open(sys.argv[1], 'r')
 # Output
 out1 = sys.argv[1] + '.lineages.txt'
 fileout = open(out1, 'w')
+shortname = re.sub('.fasta.blastp.gi$','', sys.argv[1], re.I)
+shortname2 = re.sub('.combined_unique.fa.contigs_signHMMs','', shortname, re.I)
 
 # Create a list with the names of the sequences requested
 requestedsequences = []
@@ -39,7 +42,7 @@ for start in range(0, count, batch_size):
     records = SeqIO.parse(fetch_handle,"genbank")
 
     for record in records:
-        fileout.write ('\t%s%s\t%s\t%s\t%s\n' %(out1, record.annotations['gi'], record.id, record.annotations['taxonomy'], record.annotations['organism']))
+        fileout.write ('%s\t%s\t%s\t%s\t%s\n' %(shortname2, record.annotations['gi'], record.id, record.annotations['taxonomy'], record.annotations['organism']))
 print "Done"
 fileout.close()
 
