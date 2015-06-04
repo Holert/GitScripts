@@ -5,6 +5,7 @@
 # author__ = "Johannes Holert"
 
 # usage: python calcProtAbund_fromCoverageinMetagen.py 	<gi.lineages.txt> 	<sequencecoveragefile>
+# usage: for i in `ls *.cov | sed 's/.cov$//g'`; do echo $i; python ProtAbund_fromCoverageinMetagen.py ${i}_all.lineages.txt ${i}.cov;done
 # 				0										1							2
 
 import sys
