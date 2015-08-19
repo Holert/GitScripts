@@ -1,4 +1,4 @@
-# Script for finding redundant HMM hits (proteins with more than one hit from the same HMM) in metagenomic datasets in filtered results from HMM_search_and_parse_and_extract.py (Erick)
+# Script for finding redundant HMM hits (proteins with more than one hit from the same HMM) in metagenomic datasets in filtered results from HMM_search_and_parse_and_extract.py (Erick Cardenas)
 
 # File created on 07 Mar 2015.
 
