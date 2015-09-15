@@ -40,7 +40,7 @@ for line in filein:
 # write dictionary
 
 for key, value in read_dictionary.iteritems():
-	fileout.write("%s\t%s\t%s\t%s\n" %(key, value[0], value[1], value[2]))
+	fileout.write("%s\t%s\t%s\t%s\t%s\n" %(shortname, key, value[0], value[1], value[2]))
 
 fileout.close()
 filein.close()
