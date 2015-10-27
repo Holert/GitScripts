@@ -9,6 +9,7 @@
 
 import sys
 import re
+import gzip
 import Bio
 from Bio import SeqIO
 from collections import defaultdict
@@ -37,8 +38,8 @@ for line in filein:
 # print file_dict
 
 for key in file_dict:
-	file = key + ".faa"
-	filein_1 = open(file, 'r')
+	file = key + ".faa.gz"
+	filein_1 = gzip.open(file, 'r')
 	# print filein_1
 	for seq_record in SeqIO.parse(filein_1, format = "fasta"):
 		# print seq_record
@@ -60,4 +61,5 @@ filein_1.close()
 """    
 to do:
 add better description
+make work for gz zipped and plain fasta files
 """
