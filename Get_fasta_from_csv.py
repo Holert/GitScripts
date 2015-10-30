@@ -19,10 +19,10 @@ for line in filein:
     if line.startswith('Filename'): # skips header line in results files
         continue
     else:
-	    line2 = line.split('\t')
+	    line2 = line.split(',')
 	    Filename = line2[0] # contigID
 	    proteinID = line2[1] # coverage
-	    seq = line2[3] # create dictionary key = contig_ID
+	    seq = line2[12] # create dictionary key = contig_ID
 	    output = proteinID + ".fasta"
 	    fileout = open(output, 'w')
 	    fileout.write(">%s_%s\n%s" %(Filename, proteinID, seq))
