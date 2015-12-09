@@ -1,4 +1,6 @@
-""" Retrieves protein information from Prodigal results based on protein ID and filename """
+""" Retrieves protein information from Prodigal results based on protein ID and filename 
+required proteins have to be in .csv file with filenames in column 1 and protein ID in column 2
+prodigal results in *.faa"""
 
 # File created on 23 Oct 2015.
 
@@ -9,7 +11,7 @@
 
 import sys
 import re
-import gzip
+# import gzip
 import Bio
 from Bio import SeqIO
 from collections import defaultdict
@@ -38,8 +40,8 @@ for line in filein:
 # print file_dict
 
 for key in file_dict:
-	file = key + ".faa.gz"
-	filein_1 = gzip.open(file, 'r')
+	file = key + ".faa" # for .gz use ".faa.gz"
+	filein_1 = open(file, 'r') #  gzip.open
 	# print filein_1
 	for seq_record in SeqIO.parse(filein_1, format = "fasta"):
 		# print seq_record
