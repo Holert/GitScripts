@@ -42,7 +42,7 @@ for line in filein:
 for key in file_dict:
 	file = key + ".faa" # for .gz use ".faa.gz"
 	filein_1 = open(file, 'r') #  gzip.open
-	# print filein_1
+	print "Extracting file %s" %file
 	for seq_record in SeqIO.parse(filein_1, format = "fasta"):
 		# print seq_record
 		line2 = seq_record.description
