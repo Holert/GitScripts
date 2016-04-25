@@ -26,7 +26,7 @@ fileout = open(output, 'w')
 
 file_dict = defaultdict(list)
 
-# read lines in input file, split lines by comma
+# read lines in input file, split lines by comma, input csv must contain filenames in first column and protein ID in second column
 
 for line in filein:
     if line.startswith('Filename'): # skips header line in results files
