@@ -1,0 +1,1 @@
+'BEGIN {FS="[\t\ \>\=;]"} {OFS="\t"} NR==FNR{a[$2]=$11;next} $1 in a{$1=a[$1];print $0}'
