@@ -8,9 +8,13 @@ from optparse import OptionParser
 
 usage = '''
 Usage:
-./annotate_CAT_taxonomy.py -m <CAT contig taxonomy> -s <contig size>
+./annotate_CAT_taxonomy.py -m <CAT contig taxonomy file> -s <contig size file>
 
-Creates a table with taxonomic annotations summed according to the contig length
+CAT contig taxonomy file output: *.m8.contigclassification.tab
+Contig size file consists of two tab delim columns containing contig ID and length, contig length can be extracted from genome bin *.gff files using: for i in *.gff; do grep "seqlen=" $i | awk -F $';seqlen=|;seqhdr="|"' '{t=$3; v=$2; print t, v}' OFS=$'\t' > $i.contiglength.txt; done
+
+annotate_CAT_taxonomy.py calculates the taxonomy of a genome bin based on the taxonomy of all genome contigs weighted by contig length. Taxonomy of single contigs can be calcualted using the contig annotation tool CAT (https://github.com/dutilh/CAT)
+annotate_CAT_taxonomy.py creates a tab delimited file *.annotated_taxonomy.txt showing the majority vote for individual taxonomic ranks (kingdom, phylum, class, order, family, genus, species) based on weigthed contig taxonomy
 '''
 
 parser = OptionParser(usage)
